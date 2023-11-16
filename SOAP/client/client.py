@@ -6,9 +6,9 @@ url = 'http://localhost:8000/?wsdl'
 # Criação do cliente SOAP
 client = Client(url)
 
-# Exemplo de chamada do método listar_alunos do serviço web SOAP
+# Exemplo de chamada do método cadastrar_aluno do serviço web SOAP
 try:
-    result = client.service.cadastrar_aluno('lucas', 6, 6)
-    print(f"Resultado da listagem de alunos: {result}")
+    result = client.service.celsius_para_fahrenheit(32)
+    print(f"O resultado é: {result}")
 except Exception as e:
     print(f"Erro ao chamar o serviço: {e}")

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de escalas</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <style>
+        
+        body{
+            background-image: url(/SOAP/zoro.png);
+            background-size: 500px 600px;
+           
+        }
+        
+        html, body, main {
+            height: 100%;
+
+        }
+        
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        main{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            background: linear-gradient(0deg,#111 5%,transparent 60%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .main-content{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,#111 5%,transparent 40%);
+            
+        }
+
+        .title{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .content{
+            background-color: white;
+            display: flex;
+            margin: auto;
+            width: 800px;
+            height: 400px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+            border-radius: 5px;
+        }
+        .content-inputs{
+            display: flex;
+            margin: auto;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            
+        }
+
+        .inputs{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inputs > input{
+            border-radius: 5px;
+            border: 1px solid rgba(128, 128, 128, 0.493);
+            width: 100px;
+            height: 50px;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        button{
+            padding: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <main>
+        
+            <div class="main-content">
+                <div class="content">
+                    <h1>Escalas de temperatura</h1>
+                    <div class="content-inputs">
+                        
+                        <div class="inputs">
+                            <label for="c">Celsius</label>
+                            <input type="text" name="valor" id="c" oninput="limitarEntrada('c')">
+                            
+                        </div>
+                        
+                        <div class="inputs">
+                            <label for="f">Fahrenheit</label>
+                        <input type="text" name="valor" id="f" oninput="limitarEntrada('f')">
+                    </div>
+            
+                    <div class="inputs">
+                        <label for="k">Kelvin</label>
+                        <input type="text" name="valor" id="k" oninput="limitarEntrada('k')">
+                    </div>
+            
+                </div>
+                <div class="buttons">
+                    <button onclick="calcular()">Calcular</button>
+                    <button onclick="limparCampos()">Limpar</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
+
+<script >
+    function calcular() {
+    
+            var celsius = document.getElementById('c').value;
+            var fahrenheit = document.getElementById('f').value;
+            var kelvin = document.getElementById('k').value;
+
+            if (celsius !== "") {
+                var soapRequest = '<?xml version="1.0" encoding="UTF-8"?>' +
+                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" ' +
+                    'xmlns:web="converter">' +
+                    '<soapenv:Header/>' +
+                    '<soapenv:Body>' +
+                    '    <web:celsius_to_fahrenheit>' +
+                    '        <celsius>' + celsius + '</celsius>' +
+                    '    </web:celsius_to_fahrenheit>' +
+                    '</soapenv:Body>' +
+                    '</soapenv:Envelope>';
+
+                axios.post('http://localhost:8000/', soapRequest, {
+                    headers: {
+                        'Content-Type': 'text/xml',
+                    },
+                    mode: 'no-cors', // Adicionando a opção no-cors
+                })
+                .then(response => {
+                    console.log('Requisição bem-sucedida, mas sem acesso ao conteúdo da resposta devido ao modo no-cors.');
+                })
+                .catch(error => {
+                    console.error('Erro na requisição SOAP', error);
+                });
+            }
+            
+    
+        
+        }
+
+
+
+        function limitarEntrada(id) {
+            // Recuperar o valor do campo atual
+            var valorAtual = document.getElementById(id).value;
+
+            // Desativar outros campos se o campo atual estiver preenchido
+            if (valorAtual !== "") {
+                if (id !== "c") document.getElementById('c').disabled = true;
+                if (id !== "f") document.getElementById('f').disabled = true;
+                if (id !== "k") document.getElementById('k').disabled = true;
+            } else {
+                // Ativar outros campos se o campo atual estiver vazio
+                document.getElementById('c').disabled = false;
+                document.getElementById('f').disabled = false;
+                document.getElementById('k').disabled = false;
+            }
+        }
+
+        function limparCampos() {
+            // Limpar os campos de entrada
+            document.getElementById('c').value = "";
+            document.getElementById('f').value = "";
+            document.getElementById('k').value = "";
+
+            document.getElementById('k').disabled = false;
+            document.getElementById('c').disabled = false;
+            document.getElementById('f').disabled = false;
+        }
+
+</script>

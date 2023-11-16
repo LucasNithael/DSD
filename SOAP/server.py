@@ -5,7 +5,20 @@ from wsgiref.simple_server import make_server
 from flask_cors import CORS
 
 
-class Converter(ServiceBase):
+
+class CorsService(ServiceBase):
+    origin = '*'
+
+    def _on_method_return_object(ctx):
+        ctx.transport.resp_headers['Access-Control-Allow-Origin'] = \
+                                                ctx.descriptor.service_class.origin
+
+    CorsService.event_manager.add_listener('method_return_object', 
+                                                                _on_method_return_object)
+
+
+class Converter(CorsService):
+
     @rpc(float, _returns=float)
     def celsius_to_fahrenheit(ctx, celsius):
         fahrenheit = (celsius * 9/5) + 32
@@ -42,20 +55,8 @@ application = Application([Converter], 'converter',
                           out_protocol=Soap11())
 
 
-# Função que lida com as solicitações SOAP e adiciona cabeçalhos CORS manualmente
-def handle_request(environ, start_response):
-    # Adicione cabeçalhos CORS aqui, se necessário
-    headers = [
-        ('Content-type', 'text/xml'),
-        ('Access-Control-Allow-Origin', '*'),  # Configurar para permitir todos os origens
-        ('Access-Control-Allow-Methods', 'POST, OPTIONS'),
-        ('Access-Control-Allow-Headers', 'Content-Type, SOAPAction'),
-    ]
+wsgi_application = WsgiApplication(application)
 
-    # Chame o manipulador WsgiApplication com cabeçalhos CORS adicionados
-    return WsgiApplication(application)(environ, start_response, headers=headers)
-
-# Configurar o servidor WSGI com a função personalizada que lida com CORS
-server = make_server('0.0.0.0', 8000, handle_request)
+server = make_server('0.0.0.0', 8000, wsgi_application)
 print("Servidor SOAP iniciado. Aguardando requisições...")
 server.serve_forever()

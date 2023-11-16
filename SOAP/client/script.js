@@ -18,7 +18,7 @@ const soapSettings = {
   body: soapEnvelope
 };
 
-fetch('http://localhost:8000', soapSettings)
+fetch('http://127.0.0.1:8000/', soapSettings)
   .then(response => response.text())
   .then(data => {
     // Parser XML (Você pode usar outra biblioteca de análise XML, como DOMParser)

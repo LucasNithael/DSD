@@ -132,71 +132,7 @@
 </body>
 </html>
 
-<script >
-    function calcular() {
+<script src="./script.js">
     
-            var celsius = document.getElementById('c').value;
-            var fahrenheit = document.getElementById('f').value;
-            var kelvin = document.getElementById('k').value;
-
-            if (celsius !== "") {
-                var soapRequest = '<?xml version="1.0" encoding="UTF-8"?>' +
-                    '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" ' +
-                    'xmlns:web="converter">' +
-                    '<soapenv:Header/>' +
-                    '<soapenv:Body>' +
-                    '    <web:celsius_to_fahrenheit>' +
-                    '        <celsius>' + celsius + '</celsius>' +
-                    '    </web:celsius_to_fahrenheit>' +
-                    '</soapenv:Body>' +
-                    '</soapenv:Envelope>';
-
-                axios.post('http://localhost:8000/', soapRequest, {
-                    headers: {
-                        'Content-Type': 'text/xml',
-                    },
-                    mode: 'no-cors', // Adicionando a opção no-cors
-                })
-                .then(response => {
-                    console.log('Requisição bem-sucedida, mas sem acesso ao conteúdo da resposta devido ao modo no-cors.');
-                })
-                .catch(error => {
-                    console.error('Erro na requisição SOAP', error);
-                });
-            }
-            
-    
-        
-        }
-
-
-
-        function limitarEntrada(id) {
-            // Recuperar o valor do campo atual
-            var valorAtual = document.getElementById(id).value;
-
-            // Desativar outros campos se o campo atual estiver preenchido
-            if (valorAtual !== "") {
-                if (id !== "c") document.getElementById('c').disabled = true;
-                if (id !== "f") document.getElementById('f').disabled = true;
-                if (id !== "k") document.getElementById('k').disabled = true;
-            } else {
-                // Ativar outros campos se o campo atual estiver vazio
-                document.getElementById('c').disabled = false;
-                document.getElementById('f').disabled = false;
-                document.getElementById('k').disabled = false;
-            }
-        }
-
-        function limparCampos() {
-            // Limpar os campos de entrada
-            document.getElementById('c').value = "";
-            document.getElementById('f').value = "";
-            document.getElementById('k').value = "";
-
-            document.getElementById('k').disabled = false;
-            document.getElementById('c').disabled = false;
-            document.getElementById('f').disabled = false;
-        }
 
 </script>

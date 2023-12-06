@@ -1,0 +1,774 @@
+openapi: 3.0.3
+info:
+  title: API DSD
+  version: 0.0.0
+paths:
+  /aluno/:
+    get:
+      operationId: aluno_list
+      tags:
+      - aluno
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Aluno'
+          description: ''
+    post:
+      operationId: aluno_create
+      tags:
+      - aluno
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aluno'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Aluno'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Aluno'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aluno'
+          description: ''
+  /aluno/{id}/:
+    get:
+      operationId: aluno_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this aluno.
+        required: true
+      tags:
+      - aluno
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aluno'
+          description: ''
+    put:
+      operationId: aluno_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this aluno.
+        required: true
+      tags:
+      - aluno
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aluno'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Aluno'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Aluno'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aluno'
+          description: ''
+    patch:
+      operationId: aluno_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this aluno.
+        required: true
+      tags:
+      - aluno
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAluno'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAluno'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAluno'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aluno'
+          description: ''
+    delete:
+      operationId: aluno_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this aluno.
+        required: true
+      tags:
+      - aluno
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /boletim/:
+    get:
+      operationId: boletim_list
+      tags:
+      - boletim
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Boletim'
+          description: ''
+    post:
+      operationId: boletim_create
+      tags:
+      - boletim
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Boletim'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Boletim'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Boletim'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Boletim'
+          description: ''
+  /boletim/{id}/:
+    get:
+      operationId: boletim_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this boletim.
+        required: true
+      tags:
+      - boletim
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Boletim'
+          description: ''
+    put:
+      operationId: boletim_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this boletim.
+        required: true
+      tags:
+      - boletim
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Boletim'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Boletim'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Boletim'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Boletim'
+          description: ''
+    patch:
+      operationId: boletim_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this boletim.
+        required: true
+      tags:
+      - boletim
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedBoletim'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedBoletim'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedBoletim'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Boletim'
+          description: ''
+    delete:
+      operationId: boletim_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this boletim.
+        required: true
+      tags:
+      - boletim
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /disciplina/:
+    get:
+      operationId: disciplina_list
+      tags:
+      - disciplina
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Disciplina'
+          description: ''
+    post:
+      operationId: disciplina_create
+      tags:
+      - disciplina
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Disciplina'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Disciplina'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Disciplina'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Disciplina'
+          description: ''
+  /disciplina/{id}/:
+    get:
+      operationId: disciplina_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this disciplina.
+        required: true
+      tags:
+      - disciplina
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Disciplina'
+          description: ''
+    put:
+      operationId: disciplina_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this disciplina.
+        required: true
+      tags:
+      - disciplina
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Disciplina'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Disciplina'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Disciplina'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Disciplina'
+          description: ''
+    patch:
+      operationId: disciplina_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this disciplina.
+        required: true
+      tags:
+      - disciplina
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedDisciplina'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedDisciplina'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedDisciplina'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Disciplina'
+          description: ''
+    delete:
+      operationId: disciplina_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this disciplina.
+        required: true
+      tags:
+      - disciplina
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /professor/:
+    get:
+      operationId: professor_list
+      tags:
+      - professor
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Professor'
+          description: ''
+    post:
+      operationId: professor_create
+      tags:
+      - professor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Professor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+  /professor/{id}/:
+    get:
+      operationId: professor_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this professor.
+        required: true
+      tags:
+      - professor
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+    put:
+      operationId: professor_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this professor.
+        required: true
+      tags:
+      - professor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Professor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Professor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+    patch:
+      operationId: professor_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this professor.
+        required: true
+      tags:
+      - professor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProfessor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProfessor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProfessor'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Professor'
+          description: ''
+    delete:
+      operationId: professor_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this professor.
+        required: true
+      tags:
+      - professor
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Aluno:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 50
+        matricula:
+          type: string
+          maxLength: 20
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        disciplinas:
+          type: array
+          items:
+            type: integer
+            nullable: true
+      required:
+      - email
+      - id
+      - matricula
+      - nome
+    Boletim:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nota1:
+          type: number
+          format: double
+        nota2:
+          type: number
+          format: double
+        aluno:
+          type: integer
+        disciplina:
+          type: integer
+      required:
+      - aluno
+      - disciplina
+      - id
+      - nota1
+      - nota2
+    Disciplina:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 50
+        disciplinas:
+          type: array
+          items:
+            type: integer
+            nullable: true
+      required:
+      - id
+      - nome
+    PatchedAluno:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 50
+        matricula:
+          type: string
+          maxLength: 20
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        disciplinas:
+          type: array
+          items:
+            type: integer
+            nullable: true
+    PatchedBoletim:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nota1:
+          type: number
+          format: double
+        nota2:
+          type: number
+          format: double
+        aluno:
+          type: integer
+        disciplina:
+          type: integer
+    PatchedDisciplina:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 50
+        disciplinas:
+          type: array
+          items:
+            type: integer
+            nullable: true
+    PatchedProfessor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 50
+        disciplinas:
+          type: array
+          items:
+            type: integer
+            nullable: true
+    Professor:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 50
+        disciplinas:
+          type: array
+          items:
+            type: integer
+            nullable: true
+      required:
+      - id
+      - nome
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
